@@ -1,0 +1,6 @@
+
+## Will's Work
+
+  - name: Will's Work
+    latitude: !secret wills_work_lat
+    longitude: !secret wills_work_long

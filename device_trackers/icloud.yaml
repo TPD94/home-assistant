@@ -1,0 +1,8 @@
+
+## iCloud tracker for Will.
+
+  - platform: icloud
+    username: !secret icloud_user1
+    password: !secret icloud_password1
+    account_name: Will's iPhone
+    max_interval: 7

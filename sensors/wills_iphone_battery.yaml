@@ -1,0 +1,11 @@
+
+## Will's iPhone battery.
+
+  - platform: template
+    sensors:
+      will_iphone_battery:
+        friendly_name: "Will's iPhone Battery"
+        unit_of_measurement: '%'
+        value_template: "{{ state_attr('device_tracker.iphone', 'battery') | float | round }}"
+        icon_template: mdi:flash-circle
+

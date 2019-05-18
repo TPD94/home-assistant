@@ -1,0 +1,17 @@
+
+## Alexa device exposure.
+
+  smart_home:
+    filter:
+      include_entities:
+        - binary_sensor.front_door
+        - binary_sensor.back_door
+        - alarm_control_panel.home_alarm
+        - media_player.apple_tv
+    entity_config:
+      binary_sensor.front_door:
+        name: 'Front door sensor'
+      binary_sensor.back_door:
+        name: 'Back door sensor'
+      alarm_control_panel.home_alarm:
+        name: 'Alarm panel'

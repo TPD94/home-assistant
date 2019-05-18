@@ -1,0 +1,34 @@
+
+  - platform: template
+    sensors:
+      front_room_door:
+        friendly_name: "Front Room Door"
+        value_template: >-
+          {% if is_state('binary_sensor.front_door', 'off') %}
+            Closed
+          {% else %}
+            Open
+          {% endif %}
+        icon_template: >-
+          {% if is_state('binary_sensor.front_door', 'off') %}
+            mdi:door-closed
+          {% elif is_state('binary_sensor.front_door', 'on') %}
+            mdi:door-open
+          {% endif %}
+
+  - platform: template
+    sensors:
+      back_door:
+        friendly_name: "Back Door"
+        value_template: >-
+          {% if is_state('binary_sensor.back_door', 'off') %}
+            Closed
+          {% else %}
+            Open
+          {% endif %}
+        icon_template: >-
+          {% if is_state('binary_sensor.back_door', 'off') %}
+            mdi:door-closed
+          {% elif is_state('binary_sensor.back_door', 'on') %}
+            mdi:door-open
+          {% endif %}

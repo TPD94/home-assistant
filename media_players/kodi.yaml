@@ -1,0 +1,12 @@
+
+## Kodi component configuration.
+
+  - platform: kodi
+    host: !secret kodi_host
+    port: !secret kodi_port
+    name: 'Bedroom Kodi'
+
+  - platform: kodi
+    name: "Bailey's Kodi"
+    host: !secret kodi_bailey
+    port: !secret kodi_port_bailey

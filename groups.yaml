@@ -1,0 +1,8 @@
+
+# Exterior Doors
+  outside_doors:
+    name: "Outside Doors"
+    view: false
+    entities:
+      - binary_sensor.front_door
+      - binary_sensor.back_door

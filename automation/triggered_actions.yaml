@@ -1,0 +1,21 @@
+
+## Trigger Actions
+
+  - alias: "Trigger Actions"
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.home_alarm
+        to: 'triggered'
+    condition:
+    action:
+      - service: script.alarm_triggered_wills_push
+      - service: script.turn_on
+        data:
+          entity_id: 'script.light_flash'
+      - wait_template: "{{ states('alarm_control_panel.home_alarm') != 'triggered' }}"
+      - service: script.turn_off
+        data:
+          entity_id: 'script.light_flash'
+      - service: light.turn_on
+        data: 
+          entity_id: 'group.all_lights'

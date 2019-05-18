@@ -1,0 +1,119 @@
+
+  - platform: template
+    sensors:
+      living_room_window_a:
+        friendly_name: "Living Room Window A"
+        value_template: >-
+          {% if is_state('binary_sensor.living_room_window_a', 'off') %}
+            Closed
+          {% else %}
+            Open
+          {% endif %}
+        icon_template: >-
+          {% if is_state('binary_sensor.living_room_window_a', 'off') %}
+            mdi:window-closed
+          {% elif is_state('binary_sensor.living_room_window_a', 'on') %}
+            mdi:window-open
+          {% endif %}
+
+  - platform: template
+    sensors:
+      living_room_window_b:
+        friendly_name: "Living Room Window B"
+        value_template: >-
+          {% if is_state('binary_sensor.living_room_window_b', 'off') %}
+            Closed
+          {% else %}
+            Open
+          {% endif %}
+        icon_template: >-
+          {% if is_state('binary_sensor.living_room_window_b', 'off') %}
+            mdi:window-closed
+          {% elif is_state('binary_sensor.living_room_window_b', 'on') %}
+            mdi:window-open
+          {% endif %}
+
+  - platform: template
+    sensors:
+      kitchen_window:
+        friendly_name: "Kitchen Window"
+        value_template: >-
+          {% if is_state('binary_sensor.kitchen_window', 'off') %}
+            Closed
+          {% else %}
+            Open
+          {% endif %}
+        icon_template: >-
+          {% if is_state('binary_sensor.kitchen_window', 'off') %}
+            mdi:window-closed
+          {% elif is_state('binary_sensor.kitchen_window', 'on') %}
+            mdi:window-open
+          {% endif %}
+
+  - platform: template
+    sensors:
+      office_window:
+        friendly_name: "Office Window"
+        value_template: >-
+          {% if is_state('binary_sensor.office_window', 'off') %}
+            Closed
+          {% else %}
+            Open
+          {% endif %}
+        icon_template: >-
+          {% if is_state('binary_sensor.office_window', 'off') %}
+            mdi:window-closed
+          {% elif is_state('binary_sensor.office_window', 'on') %}
+            mdi:window-open
+          {% endif %}
+
+  - platform: template
+    sensors:
+      baileys_window:
+        friendly_name: "Bailey's Window"
+        value_template: >-
+          {% if is_state('binary_sensor.baileys_window', 'off') %}
+            Closed
+          {% else %}
+            Open
+          {% endif %}
+        icon_template: >-
+          {% if is_state('binary_sensor.baileys_window', 'off') %}
+            mdi:window-closed
+          {% elif is_state('binary_sensor.baileys_window', 'on') %}
+            mdi:window-open
+          {% endif %}
+
+  - platform: template
+    sensors:
+      bedroom_window_a:
+        friendly_name: "Bedroom Window A"
+        value_template: >-
+          {% if is_state('binary_sensor.bedroom_window_a', 'off') %}
+            Closed
+          {% else %}
+            Open
+          {% endif %}
+        icon_template: >-
+          {% if is_state('binary_sensor.bedroom_window_a', 'off') %}
+            mdi:window-closed
+          {% elif is_state('binary_sensor.bedroom_window_a', 'on') %}
+            mdi:window-open
+          {% endif %}
+
+  - platform: template
+    sensors:
+      bedroom_window_b:
+        friendly_name: "Bedroom Window B"
+        value_template: >-
+          {% if is_state('binary_sensor.bedroom_window_b', 'off') %}
+            Closed
+          {% else %}
+            Open
+          {% endif %}
+        icon_template: >-
+          {% if is_state('binary_sensor.bedroom_window_b', 'off') %}
+            mdi:window-closed
+          {% elif is_state('binary_sensor.bedroom_window_b', 'on') %}
+            mdi:window-open
+          {% endif %}

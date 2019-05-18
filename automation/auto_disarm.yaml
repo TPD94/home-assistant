@@ -1,0 +1,19 @@
+
+## Auto disarm the alarm when me and brittany come home.
+
+  - alias: "Auto disarm the alarm"
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.home_alarm
+        from: 'armed_away'
+        to: 'pending'
+    condition:
+    action:
+      - delay: '00:00:25'
+      - service_template: >
+          {% if is_state('input_boolean.wills_home', 'on') or is_state('input_boolean.brittanys_home', 'on') %}
+            alarm_control_panel.alarm_disarm
+          {% endif %}
+        entity_id: 'alarm_control_panel.home_alarm'
+        data:
+          code: !secret alarm_code

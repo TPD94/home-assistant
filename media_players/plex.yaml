@@ -1,0 +1,8 @@
+
+## Plex component configuration.
+
+  - platform: plex
+    scan_interval: 3
+    entity_namespace: 'plex'
+    use_custom_entity_ids: true
+    remove_unavailable_clients: true

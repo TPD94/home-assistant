@@ -1,0 +1,9 @@
+
+  accounts:
+    - email: !secret amazon_user
+      password: !secret amazon_password
+      url: amazon.com
+      include_devices:
+        - "Will's Echo Dot"
+        - "Will's 2nd Echo Dot"
+        - "Will's 3rd Echo Dot"

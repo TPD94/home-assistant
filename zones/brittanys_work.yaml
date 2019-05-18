@@ -1,0 +1,6 @@
+
+## Brittany's Work
+
+  - name: Brittany's Work
+    latitude: !secret brittanys_work_lat
+    longitude: !secret brittanys_work_long

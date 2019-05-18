@@ -1,0 +1,13 @@
+
+## Apple homekit entity exposure.
+
+  auto_start: False
+  filter:
+    include_entities:
+    - climate.nest
+    - binary_sensor.front_door
+    - alarm_control_panel.home_alarm
+    - lock.front_door
+  entity_config:
+    alarm_control_panel.home_alarm:
+      code: !secret alarm_code

@@ -1,0 +1,63 @@
+
+## Primary Checking - Door
+
+  - alias: "Will's Door Check"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.front_door
+        from: 'off'
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.wills_home
+        state: 'off'
+    action:
+      - service: device_tracker.icloud_update
+      - delay: '00:00:07'
+      - service: device_tracker.icloud_update
+      - delay: '00:00:07'
+      - service_template: >
+          {% if is_state('device_tracker.iphone', 'home') %}
+            input_boolean.turn_on
+          {% endif %}
+        entity_id: input_boolean.wills_home
+
+## Leaving Home Automation
+
+  - alias: "Will's left home"
+    trigger:
+      - platform: state
+        entity_id: sensor.wills_home_state
+        from: 'home'
+        to: 'not_home'
+        for: '00:05:00'
+    condition:
+      - condition: state
+        entity_id: input_boolean.wills_home
+        state: 'on'
+    action:
+      - service: device_tracker.icloud_update
+      - delay: '00:00:05'
+      - service: device_tracker.icloud_update
+      - delay: '00:00:05'
+      - service_template: >
+          {% if states('device_tracker.iphone') != 'home' %}
+            input_boolean.turn_off
+          {% endif %}
+        entity_id: input_boolean.wills_home
+
+## Startup Check
+
+  - alias: 'Is will home startup'
+    trigger:
+      - platform: homeassistant
+        event: start
+    action:
+      - delay: '00:00:20'
+      - service: device_tracker.icloud_update
+      - delay: '00:00:20'
+      - service_template: >
+          {% if is_state('device_tracker.iphone', 'home') %}
+            input_boolean.turn_on
+          {% endif %}
+        entity_id: input_boolean.wills_home

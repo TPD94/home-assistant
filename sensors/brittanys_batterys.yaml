@@ -1,0 +1,21 @@
+
+## Brittany's iPhone battery.
+
+  - platform: template
+    sensors:
+      brittanys_iphone_battery:
+        friendly_name: "Brittany's iPhone Battery"
+        unit_of_measurement: '%'
+        value_template: "{{ state_attr('device_tracker.brittanysiphone', 'battery') | float | round }}"
+        icon_template: mdi:flash-circle
+
+## Brittany's iWatch battery.
+
+  - platform: template
+    sensors:
+      brittanys_iwatch_battery:
+        friendly_name: "Brittany's iWatch Battery"
+        unit_of_measurement: '%'
+        value_template: "{{ state_attr('device_tracker.brittanysapple_watch', 'battery') | float | round }}"
+        icon_template: mdi:watch-variant
+

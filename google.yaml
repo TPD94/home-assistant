@@ -1,0 +1,21 @@
+
+  project_id: !secret google_project
+  api_key: !secret google_api
+  expose_by_default: false
+  entity_config:
+    media_player.bedroom_firetv:
+      name: 'Bedroom FireTV'
+      expose: true
+      room: "Master Bedroom"
+    media_player.bailey_s_firetv:
+      name: "Bailey's FireTV"
+      expose: true
+      room: "Bailey's Room"
+    media_player.apple_tv:
+      name: "Apple TV"
+      expose: true
+      room: "Living Room"
+    light.xiaomi_gateway:
+      name: "Xiaomi Gateway Light"
+      expose: true
+      room: "Office"

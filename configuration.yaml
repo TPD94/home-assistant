@@ -1,0 +1,150 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/New_York
+  # Customization file
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+# introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+# api_password: !secret http_password
+  ssl_certificate: !secret ssl_cert
+  ssl_key: !secret ssl_key
+  base_url: !secret base_url
+
+# SSL Cert Shell
+shell_command:
+  renew_ssl: !secret shell_command
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery: !include discovery.yaml
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Logbook
+logbook: !include logbook.yaml
+
+# Sensors
+sensor: !include_dir_merge_list sensors
+
+# Text to speech
+tts: !include tts.yaml
+
+# Cloud
+cloud:
+
+# System Health
+system_health:
+
+# Groups
+group: !include groups.yaml
+
+# Zones
+zone: !include_dir_merge_list zones/
+
+# Automations
+automation: !include_dir_merge_list automation/
+
+# Scripts
+script: !include_dir_merge_named scripts/
+
+# Apple homekit
+homekit: !include homekit.yaml
+
+# Device tracker
+device_tracker: !include_dir_merge_list device_trackers/
+
+# Inputs
+input_boolean: !include_dir_named booleans/
+
+# Notifications
+notify: !include_dir_merge_list notifiers/
+
+# Media players
+media_player: !include_dir_merge_list media_players/
+
+# Alarm control panel
+alarm_control_panel: !include alarm_config.yaml
+
+# Xiaomi
+xiaomi_aqara:
+  gateways:
+    - key: !secret xiaomi_key
+
+# Nest
+nest:
+  client_id: !secret client_id
+  client_secret: !secret client_password
+
+# Climate
+climate:
+  platform: nest
+  
+# August
+august:
+  login_method: phone
+  username: !secret aug_user
+  password: !secret aug_pass
+
+# Alexa
+alexa: !include alexa.yaml
+
+# Google Assistant
+google_assistant: !include google.yaml
+
+# Cameras
+camera: !include_dir_merge_list cameras/
+
+# AppleTV
+apple_tv: !include apple_tv.yaml
+
+# Streams
+stream:
+
+# Mobile App
+mobile_app:
+
+# Person Component
+person: !include person.yaml
+
+# MQTT
+mqtt:
+  password: !secret mqtt_password
+
+# Custom Alexa Compenent
+alexa_media: !include alexa_media.yaml

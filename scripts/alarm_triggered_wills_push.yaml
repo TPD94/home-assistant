@@ -1,0 +1,12 @@
+
+## Push a notification to Will's phone when the alarm is triggered.
+
+  alarm_triggered_wills_push:
+    sequence:
+      - service: notify.mobile_app_iphone
+        data:
+          title: "You're alarm has been triggered!"
+          message: "What would you like to do?"
+          data:
+            push:
+              category: "ALARM_TRIGGERED"

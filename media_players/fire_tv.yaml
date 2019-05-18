@@ -1,0 +1,14 @@
+
+## FireTV component configuration.
+
+  - platform: androidtv
+    name: Bedroom FireTV
+    host: !secret firetv1_host
+    adbkey: !secret firetv1_adb
+    device_class: firetv
+
+  - platform: androidtv
+    name: Bailey's FireTV
+    host: !secret firetv2_host
+    adbkey: !secret firetv2_adb
+    device_class: firetv

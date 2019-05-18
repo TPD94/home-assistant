@@ -1,0 +1,155 @@
+
+## Dim the lights when playing something
+
+  - alias: 'Dim bedroom lights with media'
+    trigger:
+      - platform: state
+        entity_id:  media_player.aftt
+        to: 'playing'
+    condition:
+      condition: and
+      conditions:
+       - condition: state
+         entity_id: light.bedroom_lamp
+         state: 'on'
+       - condition: or
+         conditions:
+           - condition: sun
+             after: sunset
+           - condition: sun
+             before: sunrise
+    action:
+      - service_template: >
+          {% if is_state('light.bedroom', 'on') %}
+          light.turn_on
+          {% endif %} 
+        data:
+          entity_id: light.bedroom
+          brightness_pct: 20
+          transition: 2
+      - service_template: >
+          {% if is_state('light.bedroom_hallway', 'on') %}
+          light.turn_on
+          {% endif %} 
+        data:
+          entity_id: light.bedroom_hallway
+          brightness_pct: 20
+          transition: 2
+
+## Reset to normal
+
+  - alias: 'restore bedroom lights with media'
+    trigger:
+      - platform: state
+        entity_id:  media_player.aftt
+        from: 'playing'
+    condition:
+      condition: and
+      conditions:
+       - condition: state
+         entity_id: light.bedroom_lamp
+         state: 'on'
+       - condition: or
+         conditions:
+           - condition: sun
+             after: sunset
+           - condition: sun
+             before: sunrise
+    action:
+      - service_template: >
+          {% if is_state('light.bedroom', 'on') %}
+          light.turn_on
+          {% endif %} 
+        data:
+          entity_id: light.bedroom
+          brightness_pct: 100
+          transition: 2
+      - service_template: >
+          {% if is_state('light.bedroom_hallway', 'on') %}
+          light.turn_on
+          {% endif %} 
+        data:
+          entity_id: light.bedroom_hallway
+          brightness_pct: 100
+          transition: 2
+
+
+## Dim the livingroom lights when playing something
+
+  - alias: 'Dim livingroom lights with media'
+    trigger:
+      - platform: state
+        entity_id:  media_player.apple_tv
+        to: 'playing'
+    condition:
+      condition: or
+      conditions:
+           - condition: sun
+             after: sunset
+           - condition: sun
+             before: sunrise
+    action:
+      - service_template: >
+          {% if is_state('light.livingroom_lamp', 'on') %}
+          light.turn_on
+          {% endif %} 
+        data:
+          entity_id: light.livingroom_lamp
+          brightness_pct: 20
+          transition: 2
+      - service_template: >
+          {% if is_state('light.basement_entrance', 'on') %}
+          light.turn_on
+          {% endif %} 
+        data:
+          entity_id: light.basement_entrance
+          brightness_pct: 20
+          transition: 2
+      - service_template: >
+          {% if is_state('light.entrance', 'on') %}
+          light.turn_on
+          {% endif %} 
+        data:
+          entity_id: light.entrance
+          brightness_pct: 20
+          transition: 2
+
+## Restore the livingroom lights when playing something
+
+  - alias: 'Restore livingroom lights with media'
+    trigger:
+      - platform: state
+        entity_id:  media_player.apple_tv
+        from: 'playing'
+    condition:
+      condition: or
+      conditions:
+           - condition: sun
+             after: sunset
+           - condition: sun
+             before: sunrise
+    action:
+      - service_template: >
+          {% if is_state('light.livingroom_lamp', 'on') %}
+          light.turn_on
+          {% endif %} 
+        data:
+          entity_id: light.livingroom_lamp
+          brightness_pct: 100
+          transition: 2
+      - service_template: >
+          {% if is_state('light.basement_entrance', 'on') %}
+          light.turn_on
+          {% endif %} 
+        data:
+          entity_id: light.basement_entrance
+          brightness_pct: 100
+          transition: 2
+      - service_template: >
+          {% if is_state('light.entrance', 'on') %}
+          light.turn_on
+          {% endif %} 
+        data:
+          entity_id: light.entrance
+          brightness_pct: 100
+          transition: 2

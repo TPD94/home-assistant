@@ -1,0 +1,16 @@
+
+## Flash the lights when the alarm is triggered.
+
+  light_flash:
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: 'group.all_lights'
+          flash: 'long'
+      - delay: 00:00:13
+      - service: script.turn_off
+        data:
+          entity_id: 'script.light_flash'
+      - service: script.turn_on
+        data:
+          entity_id: 'script.light_flash'

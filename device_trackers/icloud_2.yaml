@@ -1,0 +1,8 @@
+
+## iCloud tracker for Brittany
+
+  - platform: icloud
+    username: !secret icloud_user2
+    password: !secret icloud_password2
+    account_name: Brittany's iPhone
+    max_interval: 7

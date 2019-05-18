@@ -1,0 +1,38 @@
+
+## Automatically lock the door if it is unlocked when HA starts up
+
+  - alias: "Auto lock the front door on startup"
+    trigger:
+      - platform: homeassistant
+        event: start
+    condition:
+      - condition: state
+        entity_id: lock.front_door
+        state: unlocked
+    action:
+      - wait_template: "{{ is_state('binary_sensor.front_door', 'off') }}"
+      - service: lock.lock
+        data:
+          entity_id: lock.front_door
+
+## Automatically lock the front door when it is unlocked
+
+  - alias: "Auto lock the front door"
+    trigger:
+      - platform: state
+        entity_id: lock.front_door
+        from: 'locked'
+        to: 'unlocked'
+        for: '00:02:00'
+      - platform: time_pattern
+        minutes: '/5'
+    condition:
+      - condition: state
+        entity_id: 'lock.front_door'
+        state: 'unlocked'
+    action:
+      - wait_template: "{{ is_state('binary_sensor.front_door', 'off') }}"
+      - service: lock.lock
+        data:
+          entity_id: lock.front_door
+

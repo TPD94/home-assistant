@@ -1,0 +1,63 @@
+
+## Primary Checking - Door
+
+  - alias: "Brittany's Door Check"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.front_door
+        from: 'off'
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.brittanys_home
+        state: 'off'
+    action:
+      - service: device_tracker.icloud_update
+      - delay: '00:00:07'
+      - service: device_tracker.icloud_update
+      - delay: '00:00:07'
+      - service_template: >
+          {% if is_state('device_tracker.brittanysiphone', 'home') %}
+            input_boolean.turn_on
+          {% endif %}
+        entity_id: input_boolean.brittanys_home
+
+## Leaving Home Automation
+
+  - alias: "Brittanys's left home"
+    trigger:
+      - platform: state
+        entity_id: sensor.brittanys_home_state
+        from: 'home'
+        to: 'not_home'
+        for: '00:05:00'
+    condition:
+      - condition: state
+        entity_id: input_boolean.brittanys_home
+        state: 'on'
+    action:
+      - service: device_tracker.icloud_update
+      - delay: '00:00:05'
+      - service: device_tracker.icloud_update
+      - delay: '00:00:05'
+      - service_template: >
+          {% if states('device_tracker.brittanysiphone') != 'home' %}
+            input_boolean.turn_off
+          {% endif %}
+        entity_id: input_boolean.brittanys_home
+
+## Startup Check
+
+  - alias: 'Is Brittany home startup'
+    trigger:
+      - platform: homeassistant
+        event: start
+    action:
+      - delay: '00:00:20'
+      - service: device_tracker.icloud_update
+      - delay: '00:00:20'
+      - service_template: >
+          {% if is_state('device_tracker.brittanysiphone', 'home') %}
+            input_boolean.turn_on
+          {% endif %}
+        entity_id: input_boolean.brittanys_home

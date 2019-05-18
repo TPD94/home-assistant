@@ -1,0 +1,40 @@
+
+## Push brittany's location
+
+  - alias: "Push Brittany's location"
+    trigger:
+      - platform: event
+        event_type: ios.notification_action_fired
+        event_data:
+          actionName: LOCATE_BRITTANY
+          sourceDevicePushId: !secret wills_push_id
+    condition:
+    action:
+      - service: notify.mobile_app_iphone
+        data_template:
+          message: 'Here is the information you requested.'
+          data:
+            push:
+              category: map
+            action_data:
+              latitude: "{{ state_attr('device_tracker.brittanysiphone', 'latitude') | string }}"
+              longitude: "{{ state_attr('device_tracker.brittanysiphone', 'longitude') | string }}"
+
+## Push alarm deactivate
+
+  - alias: "iOS push deactivate alarm"
+    trigger:
+      - platform: event
+        event_type: ios.notification_action_fired
+        event_data:
+          actionName: DEACTIVATE_THE_ALARM
+          sourceDevicePushId: !secret wills_push_id
+    condition:
+    action:
+      - service_template: >
+          {% if is_state('alarm_control_panel.home_alarm', 'triggered') %}
+            alarm_control_panel.alarm_disarm
+          {% endif %}
+        entity_id: 'alarm_control_panel.home_alarm'
+        data:
+          code: !secret alarm_code

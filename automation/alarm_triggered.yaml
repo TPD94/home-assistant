@@ -1,0 +1,24 @@
+
+## Trigger Alarm
+
+  - alias: "Trigger Alarm"
+    trigger:
+      - platform: state
+        entity_id: group.outside_doors
+        from: 'off'
+        to: 'on'
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: 'alarm_control_panel.home_alarm'
+          state: 'armed_away'
+        - condition: state
+          entity_id: 'alarm_control_panel.home_alarm'
+          state: 'armed_night'
+        - condition: state
+          entity_id: 'alarm_control_panel.home_alarm'
+          state: 'armed_home'
+    action:
+      - service: alarm_control_panel.alarm_trigger
+        entity_id: alarm_control_panel.home_alarm

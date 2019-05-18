@@ -1,0 +1,12 @@
+
+  - name: Will
+    id: willm94
+    user_id: !secret wills_ha_id
+    device_trackers:
+      - device_tracker.iphone
+
+  - name: Brittany
+    id: bsnedden1
+    user_id: !secret brittanys_ha_id
+    device_trackers:
+      - device_tracker.brittanysiphone
